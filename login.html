@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> HomeFix Pro| Login Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 600px;
+        }
+        
+        .welcome-section {
+            flex: 1;
+            background: linear-gradient(rgba(24, 58, 110, 0.85), rgba(24, 58, 110, 0.9)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .welcome-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .features {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features i {
+            margin-right: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-section {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo h2 {
+            color: #183a6e;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: #4a9df0;
+        }
+        
+        .login-options {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .option-card {
+            border: 2px solid #eaeaea;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .option-card:hover {
+            border-color: #4a9df0;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(74, 157, 240, 0.15);
+        }
+        
+        .option-card.active {
+            border-color: #183a6e;
+            background-color: rgba(24, 58, 110, 0.05);
+        }
+        
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .customer-icon {
+            background-color: rgba(74, 157, 240, 0.15);
+            color: #4a9df0;
+        }
+        
+        .jobseeker-icon {
+            background-color: rgba(40, 167, 69, 0.15);
+            color: #28a745;
+        }
+        
+        .option-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .option-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .login-form {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .login-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #4a9df0;
+            outline: none;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .remember-forgot a {
+            color: #4a9df0;
+            text-decoration: none;
+        }
+        
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-customer {
+            background-color: #4a9df0;
+            color: white;
+        }
+        
+        .btn-customer:hover {
+            background-color: #2d8aeb;
+        }
+        
+        .btn-jobseeker {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-jobseeker:hover {
+            background-color: #218838;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .signup-link a {
+            color: #4a9df0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .back-btn i {
+            margin-right: 5px;
+        }
+        
+        .back-btn:hover {
+            color: #4a9df0;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                max-width: 600px;
+            }
+            
+            .welcome-section {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .welcome-section, .login-section {
+                padding: 30px 20px;
+            }
+            
+            .option-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Welcome Section -->
+        <div class="welcome-section">
+            <h1>Welcome to HomeFix Pro</h1>
+            <p>Your trusted platform for home services and professional opportunities. Whether you need services for your home or are looking for work in the service industry, we've got you covered.</p>
+            
+            <ul class="features">
+                <li><i class="fas fa-check-circle"></i> Book trusted home service professionals</li>
+                <li><i class="fas fa-check-circle"></i> Find flexible job opportunities in your area</li>
+                <li><i class="fas fa-check-circle"></i> Secure payment and verified profiles</li>
+                <li><i class="fas fa-check-circle"></i> Ratings and reviews for quality assurance</li>
+            </ul>
+            
+            <div style="margin-top: 30px; font-style: italic;">
+                <p>"HomeFix Pro connected me with reliable service providers within minutes!"</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">- Sarah M., satisfied customer</p>
+            </div>
+        </div>
+        
+        <!-- Right Login Section -->
+        <div class="login-section">
+            <div class="logo">
+                <h2>HomeFix<span>Pro</span></h2>
+                <p style="color: #666; margin-top: 5px;">Your home service solution</p>
+            </div>
+            
+            <div id="optionSelection" class="login-options">
+                <div class="option-card active" id="customerOption" onclick="selectOption('customer')">
+                    <div class="icon-container customer-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Book Services</h3>
+                    <p>I'm a customer looking to book home services like cleaning, repairs, maintenance, etc.</p>
+                </div>
+                
+                <div class="option-card" id="jobseekerOption" onclick="selectOption('jobseeker')">
+                    <div class="icon-container jobseeker-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Job Seeker Login</h3>
+                    <p>I'm a service professional looking for job opportunities in the home service industry.</p>
+                </div>
+            </div>
+            
+            <!-- Customer Login Form -->
+            <div id="customerLoginForm" class="login-form">
+                <button class="back-btn" onclick="goBackToOptions()">
+                    <i class="fas fa-arrow-left"></i> Back to options
+                </button>
+                <h3 style="color: #183a6e; margin-bottom: 25px;">Customer Login</h3>
+                
+                <form id="customerForm">
+                    <div class="form-group">
+                        <label for="customerEmail">Email Address</label>
+                        <input type="email" id="customerEmail" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerPassword">Password</label>
+                        <input type="password" id="customerPassword" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-customer">Login as Customer</button>
+                </form>
+                
+                <div class="signup-link">
+                    Don't have an account? <a href="#" onclick="alert('Customer signup page would open here')">Sign up now</a>
+                </div>
+            </div>
+            
+            <!-- Job Seeker Login Form -->
+            <div id="jobseekerLoginForm" class="login-form">
+                <button class="back-btn" onclick="goBackToOptions()">
+                    <i class="fas fa-arrow-left"></i> Back to options
+                </button>
+                <h3 style="color: #183a6e; margin-bottom: 25px;">Job Seeker Login</h3>
+                
+                <form id="jobseekerForm">
+                    <div class="form-group">
+                        <label for="jobseekerEmail">Email Address</label>
+                        <input type="email" id="jobseekerEmail" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobseekerPassword">Password</label>
+                        <input type="password" id="jobseekerPassword" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-jobseeker">Login as Job Seeker</button>
+                </form>
+                
+                <div class="signup-link">
+                    Looking for work? <a href="#" onclick="alert('Job seeker registration would open here')">Apply to join our team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize with customer option selected
+        let selectedOption = 'customer';
+        
+        function selectOption(option) {
+            selectedOption = option;
+            
+            // Update option card visuals
+            document.getElementById('customerOption').classList.remove('active');
+            document.getElementById('jobseekerOption').classList.remove('active');
+            
+            // Show the selected form and hide the other
+            if (option === 'customer') {
+                document.getElementById('customerOption').classList.add('active');
+                document.getElementById('customerLoginForm').classList.add('active');
+                document.getElementById('jobseekerLoginForm').classList.remove('active');
+                document.getElementById('optionSelection').style.display = 'none';
+            } else {
+                document.getElementById('jobseekerOption').classList.add('active');
+                document.getElementById('jobseekerLoginForm').classList.add('active');
+                document.getElementById('customerLoginForm').classList.remove('active');
+                document.getElementById('optionSelection').style.display = 'none';
+            }
+        }
+        
+        function goBackToOptions() {
+            document.getElementById('optionSelection').style.display = 'flex';
+            document.getElementById('customerLoginForm').classList.remove('active');
+            document.getElementById('jobseekerLoginForm').classList.remove('active');
+        }
+        
+        // Form submission handlers
+        document.getElementById('customerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('customerEmail').value;
+            const password = document.getElementById('customerPassword').value;
+            
+            // In a real application, this would connect to a backend
+            alert(`Customer login submitted!\nEmail: ${email}\nPassword: ${password}\n\nIn a real application, this would authenticate and redirect to the customer dashboard.`);
+            
+            // Reset form
+            document.getElementById('customerForm').reset();
+        });
+        
+        document.getElementById('jobseekerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('jobseekerEmail').value;
+            const password = document.getElementById('jobseekerPassword').value;
+            
+            // In a real application, this would connect to a backend
+            alert(`Job seeker login submitted!\nEmail: ${email}\nPassword: ${password}\n\nIn a real application, this would authenticate and redirect to the job seeker dashboard.`);
+            
+            // Reset form
+            document.getElementById('jobseekerForm').reset();
+        });
+        
+        // Initialize page with customer option selected
+        window.onload = function() {
+            selectOption('customer');
+        };
+    </script>
+</body>
+</html>
