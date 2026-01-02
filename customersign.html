@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Sign Up | HomeFix Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1100px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 650px;
+        }
+        
+        .left-section {
+            flex: 1;
+            background: linear-gradient(rgba(24, 58, 110, 0.85), rgba(24, 58, 110, 0.9)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: #4a9df0;
+        }
+        
+        .left-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .left-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .benefits {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .benefits li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefits i {
+            margin-right: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .right-section {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h2 {
+            color: #183a6e;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            color: #666;
+        }
+        
+        .back-link {
+            margin-bottom: 20px;
+        }
+        
+        .back-link a {
+            color: #4a9df0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .signup-form {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: #4a9df0;
+            outline: none;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #777;
+            cursor: pointer;
+        }
+        
+        .password-strength {
+            margin-top: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .strength-bar {
+            height: 5px;
+            background-color: #eee;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+        
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .terms input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .terms a {
+            color: #4a9df0;
+            text-decoration: none;
+        }
+        
+        .terms a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-signup {
+            background-color: #4a9df0;
+            color: white;
+        }
+        
+        .btn-signup:hover {
+            background-color: #2d8aeb;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .login-link a {
+            color: #4a9df0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                max-width: 600px;
+            }
+            
+            .left-section {
+                padding: 40px 30px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .left-section, .right-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                <h1>HomeFix<span>Pro</span></h1>
+            </div>
+            
+            <h2>Join Thousands of Happy Customers</h2>
+            <p>Sign up today to access trusted home service professionals and make your home maintenance hassle-free.</p>
+            
+            <ul class="benefits">
+                <li><i class="fas fa-check-circle"></i> Access to verified service professionals</li>
+                <li><i class="fas fa-check-circle"></i> Easy booking and scheduling</li>
+                <li><i class="fas fa-check-circle"></i> Transparent pricing</li>
+                <li><i class="fas fa-check-circle"></i> Customer reviews and ratings</li>
+                <li><i class="fas fa-check-circle"></i> Secure payment options</li>
+            </ul>
+            
+            <div style="margin-top: 30px; font-style: italic;">
+                <p>"Signing up was quick and easy. Now I have all my home service needs taken care of in one place!"</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">- Jessica L., satisfied customer</p>
+            </div>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+            
+            <div class="page-header">
+                <h2>Create Customer Account</h2>
+                <p>Fill in your details to get started</p>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i> Account created successfully! Redirecting to login...
+            </div>
+            
+            <div class="signup-form">
+                <form id="customerSignupForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" placeholder="Enter your first name" required>
+                            <div id="firstNameError" class="error-message">Please enter your first name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" placeholder="Enter your last name" required>
+                            <div id="lastNameError" class="error-message">Please enter your last name</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                        <div id="emailError" class="error-message">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                        <div id="phoneError" class="error-message">Please enter a valid phone number</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Address (Optional)</label>
+                        <input type="text" id="address" placeholder="Enter your address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-container">
+                            <input type="password" id="password" placeholder="Create a password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                <i id="passwordToggle" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <span id="strengthText">Password strength: </span>
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthBar"></div>
+                            </div>
+                        </div>
+                        <div id="passwordError" class="error-message">Password must be at least 8 characters with uppercase, lowercase, and a number</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="password-container">
+                            <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                <i id="confirmPasswordToggle" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div id="confirmPasswordError" class="error-message">Passwords do not match</div>
+                    </div>
+                    
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                    </div>
+                    <div id="termsError" class="error-message">You must agree to the terms and conditions</div>
+                    
+                    <button type="submit" class="btn btn-signup">Create Account</button>
+                </form>
+                
+                <div class="login-link">
+                    Already have an account? <a href="customer.html">Log in here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const toggleIcon = document.getElementById(fieldId === 'password' ? 'passwordToggle' : 'confirmPasswordToggle');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function validatePhone(phone) {
+            const re = /^\d{10,}$/;
+            return re.test(phone.replace(/\D/g, ''));
+        }
+        
+        function validatePassword(password) {
+            // At least 8 characters, 1 uppercase, 1 lowercase, 1 number
+            const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            return re.test(password);
+        }
+        
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            
+            if (password.length >= 8) strength += 25;
+            if (/[a-z]/.test(password)) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/\d/.test(password)) strength += 25;
+            
+            strengthBar.style.width = strength + '%';
+            
+            if (strength < 50) {
+                strengthBar.style.backgroundColor = '#e74c3c';
+                strengthText.textContent = 'Password strength: Weak';
+            } else if (strength < 75) {
+                strengthBar.style.backgroundColor = '#f39c12';
+                strengthText.textContent = 'Password strength: Fair';
+            } else {
+                strengthBar.style.backgroundColor = '#2ecc71';
+                strengthText.textContent = 'Password strength: Strong';
+            }
+        }
+        
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            return false;
+        }
+        
+        function hideError(elementId) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.style.display = 'none';
+            return true;
+        }
+        
+        // Password strength checker
+        document.getElementById('password').addEventListener('input', function() {
+            checkPasswordStrength(this.value);
+        });
+        
+        // Form submission
+        document.getElementById('customerSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            
+            // Validate first name
+            const firstName = document.getElementById('firstName').value;
+            if (!firstName.trim()) {
+                isValid = showError('firstNameError', 'Please enter your first name');
+            } else {
+                hideError('firstNameError');
+            }
+            
+            // Validate last name
+            const lastName = document.getElementById('lastName').value;
+            if (!lastName.trim()) {
+                isValid = showError('lastNameError', 'Please enter your last name');
+            } else {
+                hideError('lastNameError');
+            }
+            
+            // Validate email
+            const email = document.getElementById('email').value;
+            if (!validateEmail(email)) {
+                isValid = showError('emailError', 'Please enter a valid email address');
+            } else {
+                hideError('emailError');
+            }
+            
+            // Validate phone
+            const phone = document.getElementById('phone').value;
+            if (!validatePhone(phone)) {
+                isValid = showError('phoneError', 'Please enter a valid phone number (at least 10 digits)');
+            } else {
+                hideError('phoneError');
+            }
+            
+            // Validate password
+            const password = document.getElementById('password').value;
+            if (!validatePassword(password)) {
+                isValid = showError('passwordError', 'Password must be at least 8 characters with uppercase, lowercase, and a number');
+            } else {
+                hideError('passwordError');
+            }
+            
+            // Validate confirm password
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                isValid = showError('confirmPasswordError', 'Passwords do not match');
+            } else {
+                hideError('confirmPasswordError');
+            }
+            
+            // Validate terms
+            const terms = document.getElementById('terms').checked;
+            if (!terms) {
+                isValid = showError('termsError', 'You must agree to the terms and conditions');
+            } else {
+                hideError('termsError');
+            }
+            
+            if (isValid) {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form
+                document.getElementById('customerSignupForm').reset();
+                document.getElementById('strengthBar').style.width = '0%';
+                document.getElementById('strengthText').textContent = 'Password strength: ';
+                
+                // Redirect to login page after 3 seconds
+                setTimeout(() => {
+                    window.location.href = 'interface.html';
+                }, 3000);
+            }
+        });
+        
+        // Real-time validation
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value;
+            if (email && !validateEmail(email)) {
+                showError('emailError', 'Please enter a valid email address');
+            } else {
+                hideError('emailError');
+            }
+        });
+        
+        document.getElementById('phone').addEventListener('blur', function() {
+            const phone = this.value;
+            if (phone && !validatePhone(phone)) {
+                showError('phoneError', 'Please enter a valid phone number (at least 10 digits)');
+            } else {
+                hideError('phoneError');
+            }
+        });
+        
+        document.getElementById('password').addEventListener('blur', function() {
+            const password = this.value;
+            if (password && !validatePassword(password)) {
+                showError('passwordError', 'Password must be at least 8 characters with uppercase, lowercase, and a number');
+            } else {
+                hideError('passwordError');
+            }
+        });
+        
+        document.getElementById('confirmPassword').addEventListener('blur', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            if (confirmPassword && password !== confirmPassword) {
+                showError('confirmPasswordError', 'Passwords do not match');
+            } else {
+                hideError('confirmPasswordError');
+            }
+        });
+    </script>
+</body>
+</html>

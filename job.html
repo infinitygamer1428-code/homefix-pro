@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Seeker Login | HomeFix Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 600px;
+        }
+        
+        .left-section {
+            flex: 1;
+            background: linear-gradient(rgba(40, 167, 69, 0.85), rgba(40, 167, 69, 0.9)), url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: #ffd166;
+        }
+        
+        .left-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .left-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .benefits {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .benefits li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefits i {
+            margin-right: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .right-section {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h2 {
+            color: #183a6e;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            color: #666;
+        }
+        
+        .back-link {
+            margin-bottom: 20px;
+        }
+        
+        .back-link a {
+            color: #28a745;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #777;
+            cursor: pointer;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .remember-forgot a {
+            color: #28a745;
+            text-decoration: none;
+        }
+        
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-login {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-login:hover {
+            background-color: #218838;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #666;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider span {
+            padding: 0 15px;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .login-link a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                max-width: 600px;
+            }
+            
+            .left-section {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .left-section, .right-section {
+                padding: 30px 20px;
+            }
+            
+            .remember-forgot {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                <h1>HomeFix<span>Pro</span></h1>
+            </div>
+            
+            <h2>Welcome Back, Professional!</h2>
+            <p>Log in to your job seeker account to find work opportunities, manage your schedule, and grow your business.</p>
+            
+            <ul class="benefits">
+                <li><i class="fas fa-check-circle"></i> Access to job opportunities in your area</li>
+                <li><i class="fas fa-check-circle"></i> Set your own schedule and rates</li>
+                <li><i class="fas fa-check-circle"></i> Get paid securely and on time</li>
+                <li><i class="fas fa-check-circle"></i> Build your reputation with reviews</li>
+            </ul>
+            
+            <div style="margin-top: 30px; font-style: italic;">
+                <p>"Since joining HomeFix Pro, I've doubled my income and built a steady client base. The platform makes it easy to find quality work!"</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">- David R., professional plumber</p>
+            </div>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+            
+            <div class="page-header">
+                <h2>Job Seeker Login</h2>
+                <p>Enter your credentials to access your professional account</p>
+            </div>
+            
+            <div class="login-form">
+                <form id="jobseekerLoginForm">
+                    <div class="form-group">
+                        <label for="jobseekerEmail">Email Address</label>
+                        <input type="email" id="jobseekerEmail" placeholder="Enter your email" required>
+                        <div id="emailError" class="error-message">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobseekerPassword">Password</label>
+                        <div class="password-container">
+                            <input type="password" id="jobseekerPassword" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i id="passwordToggleIcon" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div id="passwordError" class="error-message">Password must be at least 8 characters</div>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <label style="display: flex; align-items: center;">
+                            <input type="checkbox" style="width: auto; margin-right: 8px;"> Remember me
+                        </label>
+                        <a href="#" id="forgotPassword">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-login">Login to Professional Account</button>
+                </form>
+                
+                <div class="divider">
+                    <span>Don't have an account?</span>
+                </div>
+                
+                <div class="login-link">
+                    Ready to grow your business? <a href="jobseeker-signup.html">Apply to join our team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('jobseekerPassword');
+            const toggleIcon = document.getElementById('passwordToggleIcon');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            return false;
+        }
+        
+        function hideError(elementId) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.style.display = 'none';
+            return true;
+        }
+        
+        // Form submission
+        document.getElementById('jobseekerLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            
+            // Validate email
+            const email = document.getElementById('jobseekerEmail').value;
+            if (!validateEmail(email)) {
+                isValid = showError('emailError', 'Please enter a valid email address');
+            } else {
+                hideError('emailError');
+            }
+            
+            // Validate password
+            const password = document.getElementById('jobseekerPassword').value;
+            if (password.length < 8) {
+                isValid = showError('passwordError', 'Password must be at least 8 characters');
+            } else {
+                hideError('passwordError');
+            }
+            
+            if (isValid) {
+                // Simulate API call
+                document.getElementById('jobseekerLoginForm').reset();
+                alert('Login successful! Redirecting to professional dashboard...');
+                // In a real app: window.location.href = 'jobseeker-dashboard.html';
+            }
+        });
+        
+        // Forgot password functionality
+        document.getElementById('forgotPassword').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = prompt('Please enter your email address to reset your password:');
+            if (email && validateEmail(email)) {
+                alert(`Password reset instructions have been sent to ${email}`);
+            } else if (email) {
+                alert('Please enter a valid email address.');
+            }
+        });
+        
+        // Real-time validation
+        document.getElementById('jobseekerEmail').addEventListener('blur', function() {
+            const email = this.value;
+            if (email && !validateEmail(email)) {
+                showError('emailError', 'Please enter a valid email address');
+            } else {
+                hideError('emailError');
+            }
+        });
+        
+        document.getElementById('jobseekerPassword').addEventListener('blur', function() {
+            const password = this.value;
+            if (password && password.length < 8) {
+                showError('passwordError', 'Password must be at least 8 characters');
+            } else {
+                hideError('passwordError');
+            }
+        });
+    </script>
+</body>
+</html>

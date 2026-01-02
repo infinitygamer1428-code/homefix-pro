@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login | HomeFix Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 600px;
+        }
+        
+        .left-section {
+            flex: 1;
+            background: linear-gradient(rgba(74, 157, 240, 0.85), rgba(74, 157, 240, 0.9)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: #ffd166;
+        }
+        
+        .left-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .left-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .benefits {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .benefits li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefits i {
+            margin-right: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .right-section {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h2 {
+            color: #183a6e;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            color: #666;
+        }
+        
+        .back-link {
+            margin-bottom: 20px;
+        }
+        
+        .back-link a {
+            color: #4a9df0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #4a9df0;
+            outline: none;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #777;
+            cursor: pointer;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .remember-forgot a {
+            color: #4a9df0;
+            text-decoration: none;
+        }
+        
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-login {
+            background-color: #4a9df0;
+            color: white;
+        }
+        
+        .btn-login:hover {
+            background-color: #2d8aeb;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #666;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider span {
+            padding: 0 15px;
+        }
+        
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .btn-google {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-google:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .btn-facebook {
+            background-color: #3b5998;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-facebook:hover {
+            background-color: #344e86;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .signup-link a {
+            color: #4a9df0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                max-width: 600px;
+            }
+            
+            .left-section {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .left-section, .right-section {
+                padding: 30px 20px;
+            }
+            
+            .remember-forgot {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                <h1>HomeFix<span>Pro</span></h1>
+            </div>
+            
+            <h2>Welcome Back, Customer!</h2>
+            <p>Log in to your account to book home services, manage appointments, and connect with trusted professionals.</p>
+            
+            <ul class="benefits">
+                <li><i class="fas fa-check-circle"></i> Access to verified service professionals</li>
+                <li><i class="fas fa-check-circle"></i> Schedule appointments 24/7</li>
+                <li><i class="fas fa-check-circle"></i> Secure payment options</li>
+                <li><i class="fas fa-check-circle"></i> Track your service history</li>
+            </ul>
+            
+            <div style="margin-top: 30px; font-style: italic;">
+                <p>"As a busy professional, HomeFix Pro saves me so much time. I can book trusted help for my home with just a few clicks!"</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">- Michael T., regular customer</p>
+            </div>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+            
+            <div class="page-header">
+                <h2>Customer Login</h2>
+                <p>Enter your credentials to access your account</p>
+            </div>
+            
+            <div class="login-form">
+                <form id="customerLoginForm">
+                    <div class="form-group">
+                        <label for="customerEmail">Email Address</label>
+                        <input type="email" id="customerEmail" placeholder="Enter your email" required>
+                        <div id="emailError" class="error-message">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerPassword">Password</label>
+                        <div class="password-container">
+                            <input type="password" id="customerPassword" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i id="passwordToggleIcon" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div id="passwordError" class="error-message">Password must be at least 8 characters</div>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <label style="display: flex; align-items: center;">
+                            <input type="checkbox" style="width: auto; margin-right: 8px;"> Remember me
+                        </label>
+                        <a href="#" id="forgotPassword">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-login">Login to Your Account</button>
+                </form>
+                
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="btn btn-google">
+                        <i class="fab fa-google"></i> Continue with Google
+                    </button>
+                    <button type="button" class="btn btn-facebook">
+                        <i class="fab fa-facebook-f"></i> Continue with Facebook
+                    </button>
+                </div>
+                
+                <div class="signup-link">
+                    Don't have an account? <a href="customersign.html">Sign up now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('customerPassword');
+            const toggleIcon = document.getElementById('passwordToggleIcon');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            return false;
+        }
+        
+        function hideError(elementId) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.style.display = 'none';
+            return true;
+        }
+        
+        // Form submission
+        document.getElementById('customerLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            
+            // Validate email
+            const email = document.getElementById('customerEmail').value;
+            if (!validateEmail(email)) {
+                isValid = showError('emailError', 'Please enter a valid email address');
+            } else {
+                hideError('emailError');
+            }
+            
+            // Validate password
+            const password = document.getElementById('customerPassword').value;
+            if (password.length < 8) {
+                isValid = showError('passwordError', 'Password must be at least 8 characters');
+            } else {
+                hideError('passwordError');
+            }
+            
+            if (isValid) {
+                // Simulate API call
+                document.getElementById('customerLoginForm').reset();
+                alert('Login successful! Redirecting to customer dashboard...');
+                // In a real app: window.location.href = 'customer-dashboard.html';
+            }
+        });
+        
+        // Forgot password functionality
+        document.getElementById('forgotPassword').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = prompt('Please enter your email address to reset your password:');
+            if (email && validateEmail(email)) {
+                alert(`Password reset instructions have been sent to ${email}`);
+            } else if (email) {
+                alert('Please enter a valid email address.');
+            }
+        });
+        
+        // Real-time validation
+        document.getElementById('customerEmail').addEventListener('blur', function() {
+            const email = this.value;
+            if (email && !validateEmail(email)) {
+                showError('emailError', 'Please enter a valid email address');
+            } else {
+                hideError('emailError');
+            }
+        });
+        
+        document.getElementById('customerPassword').addEventListener('blur', function() {
+            const password = this.value;
+            if (password && password.length < 8) {
+                showError('passwordError', 'Password must be at least 8 characters');
+            } else {
+                hideError('passwordError');
+            }
+        });
+    </script>
+</body>
+</html>
